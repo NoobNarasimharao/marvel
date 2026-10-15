@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Your personal Marvel watchlist. Every universe, every timeline, and your road to Avengers: Doomsday.">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' https://cdn.marvel.com https://image.tmdb.org https://upload.wikimedia.org https://m.media-amazon.com https://lumiere-a.akamaihd.net https://www.sonypictures.com; connect-src 'none'; font-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Marvel • The Ultimate Watchlist</title>
+  <link rel="icon" href="assets/icons/mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/data.js" defer></script>
+  <script src="js/security.js" defer></script>
+  <script src="js/storage.js" defer></script>
+  <script src="js/core.js" defer></script>
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#library">Skip to watchlist</a>
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="#dashboard"><b>MARVEL</b><span>WATCHLIST</span></a>
+    <p class="nav-label">YOUR COMMAND CENTER</p>
+    <nav aria-label="Main navigation" id="main-nav">
+      <button type="button" class="nav-item active" data-view="all"><span aria-hidden="true">▦</span> My watchlist <span class="nav-count" id="nav-total">0</span></button>
+      <button type="button" class="nav-item" data-view="essentials"><span aria-hidden="true">✦</span> Doomsday essentials</button>
+      <button type="button" class="nav-item" data-view="upcoming"><span aria-hidden="true">◷</span> Upcoming releases</button>
+      <button type="button" class="nav-item" data-view="favorites"><span aria-hidden="true">♡</span> Favorites</button>
+      <button type="button" class="nav-item" data-view="planner"><span aria-hidden="true">▤</span> Session planner</button>
+    </nav>
+    <p class="nav-label">EXPLORE THE MULTIVERSE</p>
+    <nav aria-label="Universes" id="universe-nav"></nav>
+    <div class="sidebar-bottom"><div class="local-badge"><span>●</span> YOUR UNIVERSE. YOUR PACE.</div><p>Progress stays on this device.<br>No account. Just the next adventure.</p><button type="button" id="backup-open" class="subtle-button">↗ Backup &amp; settings</button></div>
+  </aside>
+  <div class="page-shell">
+    <header class="topbar"><div class="topbar-title"><button type="button" id="menu-toggle" class="icon-button mobile-only" aria-label="Toggle navigation" aria-expanded="false" aria-controls="sidebar">☰</button><span>THE MULTIVERSE ARCHIVE</span><span class="topbar-divider">/</span><b>Your watchlist</b></div><div class="topbar-actions"><span class="local-pill">● Saved on this device</span><button type="button" id="theme-toggle" class="icon-button" aria-label="Switch to light theme">☀</button></div></header>
+    <main id="dashboard">
+      <section class="hero" aria-labelledby="hero-heading">
+        <div class="hero-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="planet"></div><div class="hero-emblem">A</div><div class="art-caption">THE ROAD TO<br><strong>DOOMSDAY</strong><span>12.18.2026</span></div></div>
+        <div class="hero-copy"><div class="eyebrow"><span></span> THE NEXT CHAPTER STARTS HERE</div><h1 id="hero-heading"><span>MARVEL:</span><br>THE ULTIMATE<br><em>WATCHLIST</em></h1><p>Every universe. Every timeline.<br>One mission: Avengers: Doomsday.</p><div class="hero-actions"><button type="button" id="resume" class="primary-button">Resume progress <span aria-hidden="true">↗</span></button><button type="button" id="random" class="outline-button">⚄ Pick my next movie</button></div><div class="countdown"><span class="countdown-icon" aria-hidden="true">◷</span><b id="countdown-days">—</b><span id="countdown-label">DAYS UNTIL DOOMSDAY</span><span class="countdown-date">DEC 18, 2026</span></div></div>
+      </section>
+      <section class="stats-grid" aria-label="Watchlist progress"><div class="stat-card total-progress"><div><span class="label">YOUR JOURNEY</span><b id="overall-percent">0%</b></div><progress id="overall-progress" max="100" value="0" aria-label="Overall completion"></progress><span class="muted">One title closer to the endgame.</span></div><div class="stat-card"><span class="label">TOTAL TITLES</span><b id="total-count">0</b><span class="muted">Across every universe</span></div><div class="stat-card"><span class="label"><span class="gold">✓</span> COMPLETED</span><b id="completed-count">0</b><span class="muted" id="remaining-count">0 left to discover</span></div><div class="stat-card"><span class="label"><span class="red">▶</span> WATCHING</span><b id="watching-count">0</b><span class="muted">Keep the story going</span></div></section>
+      <section class="journey-row"><div class="continue-card"><span class="section-kicker">UP NEXT IN YOUR JOURNEY</span><h2 id="next-title">Choose your first adventure</h2><p id="next-meta"></p><button type="button" id="next-open" class="text-button">View title <span aria-hidden="true">→</span></button></div><div class="essentials-card"><div class="essentials-icon" aria-hidden="true">✦</div><div><span class="section-kicker gold">THE DOOMSDAY ESSENTIALS</span><h2>Your mission briefing</h2><p id="essential-caption">A curated path to the next Avengers chapter.</p><progress id="essential-progress" max="100" value="0" aria-label="Doomsday essentials completion"></progress><span class="muted">A fan recommendation, not an official prerequisite.</span></div><button type="button" id="explore-essentials" class="icon-button" aria-label="Explore Doomsday essentials">↗</button></div></section>
+      <section id="library" class="library-section" aria-labelledby="library-heading"><div class="library-header"><div><div class="section-kicker">BUILD YOUR MARVEL STORY</div><h2 id="library-heading">Your watchlist <span id="result-count"></span></h2></div><div class="library-tools"><button type="button" id="progress-open" class="subtle-button">Progress breakdown</button><button type="button" id="density-toggle" class="icon-button" aria-label="Use compact cards" aria-pressed="false">▦</button></div></div>
+        <div class="mode-tabs" role="group" aria-label="Watch order"><button type="button" data-mode="release" class="selected">Release order</button><button type="button" data-mode="universe">Universe order</button><button type="button" data-mode="essentials">✦ Doomsday essentials</button></div>
+        <div class="filter-toolbar"><label class="search-box"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Find a movie, show, or character…" aria-label="Search titles and characters"></label><label class="select-wrap"><span class="sr-only">Type</span><select id="filter-type"><option value="">All titles</option><option value="movie">Movies</option><option value="tv">TV shows</option></select></label><label class="select-wrap"><span class="sr-only">Universe</span><select id="filter-universe"><option value="">All universes</option></select></label><button type="button" id="filters-toggle" class="outline-button small" aria-expanded="false" aria-controls="more-filters">☷ Filters</button></div>
+        <div id="more-filters" class="more-filters" hidden><label>Collection<select id="filter-category"><option value="">All collections</option></select></label><label>MCU phase<select id="filter-phase"><option value="">All phases</option></select></label><label>Character<select id="filter-character"><option value="">All characters</option></select></label><label>Release year<select id="filter-year"><option value="">All years</option></select></label><label>Personal status<select id="filter-status"><option value="">Any status</option><option value="not-started">Not started</option><option value="unwatched">Unwatched</option><option value="watching">Watching</option><option value="completed">Completed</option><option value="skipped">Skipped</option></select></label><label>Release status<select id="filter-release"><option value="">Any release</option><option value="released">Released</option><option value="upcoming">Upcoming</option><option value="unconfirmed">Release date unconfirmed</option></select></label><label>Importance<select id="filter-importance"><option value="">All titles</option><option value="essential">Doomsday essential</option><option value="optional">Optional / deep cut</option></select></label></div>
+        <div class="results-toolbar"><div><label class="check-label"><input type="checkbox" id="hide-completed"> Hide completed</label><button type="button" id="clear-filters" class="text-button">Clear filters</button></div><label class="sort-label">Sort by <select id="sort"><option value="release">Release date</option><option value="title">Title A–Z</option><option value="status">Completion status</option><option value="recommended">Recommended order</option></select></label></div>
+        <div id="view-note" class="view-note" hidden></div><div id="library-content"></div>
+      </section>
+      <footer><a class="footer-brand" href="#dashboard">MARVEL <span>WATCHLIST</span></a><p>An independent fan project. Marvel characters and artwork belong to their respective owners.</p><span>EVERY STORY COUNTS.</span></footer>
+    </main>
+  </div>
+  <dialog id="detail-dialog" aria-labelledby="detail-heading"><div class="dialog-top"><span class="section-kicker">THE MULTIVERSE ARCHIVE</span><button type="button" class="icon-button" data-close="detail-dialog" aria-label="Close title details">✕</button></div><div id="detail-content"></div></dialog>
+  <dialog id="settings-dialog" aria-labelledby="settings-heading"><div class="dialog-top"><h2 id="settings-heading">Your progress, protected.</h2><button type="button" class="icon-button" data-close="settings-dialog" aria-label="Close backup and settings">✕</button></div><p>Keep a backup before changing browsers or clearing site data. Imports replace your current progress after confirmation.</p><div class="settings-actions"><button type="button" id="export" class="primary-button">Export backup (.json)</button><label class="outline-button file-label">Import backup<input id="import" type="file" accept="application/json,.json"></label></div><p class="muted">Only statuses, favorites, ratings, notes, planner selections, and preferences are exported. Maximum import size: 1 MB.</p><hr><h3>Start a new journey</h3><p>Reset all progress, notes, ratings, favorites, and your session planner.</p><button type="button" id="reset" class="danger-button">Reset all progress</button><p id="storage-status" role="status"></p></dialog>
+  <dialog id="confirm-dialog" aria-labelledby="confirm-heading"><h2 id="confirm-heading">Confirm action</h2><p id="confirm-message"></p><div class="settings-actions"><button type="button" id="confirm-cancel" class="outline-button">Cancel</button><button type="button" id="confirm-accept" class="primary-button">Confirm</button></div></dialog>
+  <dialog id="progress-dialog" aria-labelledby="progress-heading"><div class="dialog-top"><h2 id="progress-heading">Every universe. Your progress.</h2><button type="button" class="icon-button" data-close="progress-dialog" aria-label="Close progress breakdown">✕</button></div><div id="progress-content"></div></dialog>
+  <div id="toast" role="status" aria-live="polite" hidden></div>
+  <noscript>This watchlist needs JavaScript enabled to load the library and save your progress.</noscript>
+</body>
+</html>

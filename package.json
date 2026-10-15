@@ -1,0 +1,20 @@
+{
+  "devDependencies": {
+    "html-validate": "11.16.2",
+    "playwright": "1.64.1"
+  },
+  "name": "marvel-watchlist",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A browser-local Marvel watchlist with GitHub Pages deployment",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "scripts": {
+    "start": "node scripts/serve.cjs",
+    "validate": "node scripts/validate.cjs && node --test tests/core.test.cjs",
+    "test:browser": "node tests/browser.cjs",
+    "test": "npm run validate && npm run test:browser",
+    "package": "node scripts/package.cjs"
+  }
+}
